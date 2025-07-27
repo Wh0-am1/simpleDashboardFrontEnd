@@ -3,7 +3,8 @@ import { Navigate } from "react-router-dom";
 
 const AuthProtector = ({ children }) => {
   const user = useSelector((state) => state.user);
-  if (!user.id) {
+  console.log(user);
+  if (!user.auth) {
     return <Navigate to={"/login"} replace />;
   }
   return children;

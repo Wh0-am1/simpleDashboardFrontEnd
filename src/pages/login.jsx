@@ -4,15 +4,21 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "../GlobalStateSlice/user/userSlice";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [Error, setError] = useState("");
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (user.auth) navigate("/", { replace: true });
+  }, []);
   async function LoginHandle() {
     const data = await fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
@@ -25,12 +31,12 @@ export default function Login() {
       }),
     });
     const res = await data.json();
-    if (res.success === "false") {
+    if (res.success === false) {
       setError(res.message);
     } else {
       setError("");
       localStorage.setItem("jwt", res.token);
-      dispatch(setUser({ id: res.id, email, name: res.name }));
+      dispatch(setUser({ auth: true, token: res.token }));
       navigate("/", { replace: true });
     }
   }

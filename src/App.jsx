@@ -5,15 +5,15 @@ import Register from "./pages/Register";
 import { Routes, Route } from "react-router-dom";
 import AuthProtector from "./protectRoter/AuthProtector";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setUser } from "./GlobalStateSlice/user/userSlice";
 
 function App() {
-  // console.log("helo");
+  const dispatch = useDispatch();
   useEffect(() => {
-    console.log("keri");
+    const jwt = localStorage.getItem("jwt");
 
-    return () => {
-      console.log("erangi");
-    };
+    if (jwt) dispatch(setUser({ auth: true, token: jwt }));
   }, []);
   return (
     <main>

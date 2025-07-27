@@ -27,12 +27,12 @@ export default function Register() {
       }),
     });
     const res = await data.json();
-    if (res.success === "false") {
+    if (res.success === false) {
       setError(res.message);
     } else {
       setError("");
       localStorage.setItem("jwt", res.token);
-      dispatch(setUser({ id: res.id, email: Email, name: Name }));
+      dispatch(setUser({ auth: true, token: res.token }));
       navigate("/", { replace: true });
     }
   }
