@@ -3,9 +3,9 @@ import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setUser } from "../GlobalStateSlice/user/userSlice";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { setUser } from "../redux/user/userSlice";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -14,10 +14,10 @@ export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (user.auth) navigate("/", { replace: true });
+    // if (user) navigate("/", { replace: true });
   }, []);
   async function LoginHandle() {
     const data = await fetch("http://localhost:3000/api/v1/login", {

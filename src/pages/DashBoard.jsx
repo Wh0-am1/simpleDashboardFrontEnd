@@ -5,8 +5,11 @@ import Profile from "../components/Profile";
 import NavBar from "../components/NavBar";
 import NavFooter from "../components/NavFooter";
 import Content from "../components/Content";
+import { useState } from "react";
 
 export default function DashBoard() {
+  const [menu, setMenu] = useState(false);
+
   return (
     <Box
       sx={{
@@ -19,14 +22,32 @@ export default function DashBoard() {
         boxSizing: "border-box",
       }}
     >
+      <Box
+        sx={{
+          display: { sx: "block", lg: "none" },
+          position: "absolute",
+          zIndex: 3,
+          top: 10,
+          left: 10,
+        }}
+        onClick={() => setMenu((prev) => !prev)}
+      >
+        {!menu && <Icon icon="material-symbols:menu" width="24" height="24" />}{" "}
+        {menu && (
+          <Icon icon="material-symbols:close-rounded" width="24" height="24" />
+        )}{" "}
+      </Box>
       {/* Left Side */}
       <Box
         sx={{
-          display: "flex",
+          display: { lg: "flex", xs: `${menu ? "flex" : "none"}` },
+          inset: 0,
+          zIndex: 1,
+          bgcolor: "white",
           flexDirection: "column",
           alignItems: "center",
-          width: "15%",
           justifyContent: "space-between",
+          position: { xs: "absolute", lg: "static" },
         }}
       >
         {/* Company Name Tag */}
@@ -79,6 +100,7 @@ export default function DashBoard() {
         flexItem
         sx={{
           height: "100%",
+          display: { lg: "inline", xs: "none" },
         }}
       />
 
@@ -88,6 +110,8 @@ export default function DashBoard() {
         sx={{
           flexGrow: "1",
           width: "85%",
+          overflowY: "auto",
+          overflowX: "hidden",
         }}
       >
         <Content />

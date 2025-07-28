@@ -9,12 +9,13 @@ import { Icon } from "@iconify/react";
 export default function ProgressMain() {
   return (
     <Box>
-      <Grid container spacing={10}>
+      <Grid container spacing={{ lg: 10, xs: 6 }}>
         <Grid
-          size={6}
+          size={{ lg: 6, xs: 12 }}
           sx={{
             display: "flex",
             flexDirection: "column",
+            gap: { xs: 3, lg: 0 },
             justifyContent: "space-between",
           }}
         >
@@ -41,6 +42,8 @@ export default function ProgressMain() {
           <Box
             sx={{
               display: "flex",
+              flexDirection: { sm: "row", xs: "column" },
+              gap: { md: 0, xs: 2 },
               justifyContent: "space-between",
             }}
           >
@@ -48,13 +51,13 @@ export default function ProgressMain() {
             <MoneyCard val={350.11} />
           </Box>
         </Grid>
-        <Grid size={6}>
+        <Grid size={{ lg: 6, xs: 12 }}>
           <PopupCard />
         </Grid>
-        <Grid size={6}>
+        <Grid size={{ lg: 6, xs: 12 }}>
           <ChartCard />
         </Grid>
-        <Grid size={6}>
+        <Grid size={{ lg: 6, xs: 12 }}>
           <Schedule />
         </Grid>
       </Grid>

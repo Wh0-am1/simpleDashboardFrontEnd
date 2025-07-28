@@ -31,10 +31,12 @@ export default function ChannelCards() {
     <Box
       sx={{
         display: "flex",
+        flexDirection: { xs: "column", lg: "row" },
         justifyContent: "space-between",
         borderRadius: "1rem",
         bgcolor: "#EDEDED",
         position: "relative",
+        mt: { xs: 3, lg: 0 },
         p: 3,
       }}
     >
@@ -66,8 +68,10 @@ export default function ChannelCards() {
       <Box
         sx={{
           display: "flex",
+          flexDirection: { lg: "row", xs: "column" },
           gap: 3,
-          mr: 11,
+          mr: { lg: 13, xs: 0 },
+          mb: { xs: 4, lg: 0 },
         }}
       >
         {data.map((e, i) => (
@@ -76,7 +80,11 @@ export default function ChannelCards() {
         <Box
           sx={{
             position: "absolute",
-            right: -30,
+            right: { lg: -18, xs: "45%" },
+            bottom: {
+              xs: "-7%",
+              lg: 20,
+            },
           }}
         >
           <ExtraCard />

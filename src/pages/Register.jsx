@@ -3,7 +3,7 @@ import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setUser } from "../GlobalStateSlice/user/userSlice";
+import { setUser } from "../redux/user/userSlice";
 
 export default function Register() {
   const [Error, setError] = useState("");

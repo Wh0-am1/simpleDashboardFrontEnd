@@ -13,12 +13,17 @@ export default function ExtraCard() {
         textAlign: "center",
         display: "flex",
         bgcolor: "#660B8C",
-        flexDirection: "column",
+        flexDirection: { sx: "row", lg: "column" },
         color: "white",
         gap: 1,
       }}
     >
-      <Box>
+      <Box
+        sx={{
+          display: { xs: "flex", lg: "block" },
+          gap: { xs: 1, lg: 0 },
+        }}
+      >
         <Typography
           sx={{
             fontSize: 20,
