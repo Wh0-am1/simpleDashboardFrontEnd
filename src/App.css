@@ -6,3 +6,9 @@
 .NavBar a:active {
     font-weight: bold;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
