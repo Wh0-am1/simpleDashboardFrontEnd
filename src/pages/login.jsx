@@ -9,92 +9,92 @@ import { setUser } from "../redux/features/users/userSlice";
 import { signAPI } from "../api/signAPI";
 
 export default function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [Error, setError] = useState("");
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [Error, setError] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const { auth } = useSelector((state) => state.user);
+  const { auth } = useSelector((state) => state.user);
 
-    useEffect(() => {
-        if (auth) navigate("/", { replace: true });
-    }, []);
-    async function LoginHandle() {
-        const res = await signAPI({ email, password });
-        if (res.success === false) {
-            setError(res.message);
-        } else {
-            setError("");
-            localStorage.setItem("jwt", res.token);
-            dispatch(setUser({ auth: true, token: res.token }));
-            navigate("/", { replace: true });
-        }
+  useEffect(() => {
+    if (auth) navigate("/", { replace: true });
+  }, []);
+  async function LoginHandle() {
+    const res = await signAPI("/login", { email, password });
+    if (res.success === false) {
+      setError(res.message);
+    } else {
+      setError("");
+      localStorage.setItem("jwt", res.token);
+      dispatch(setUser({ auth: true, token: res.token }));
+      navigate("/", { replace: true });
     }
+  }
 
-    return (
-        <Paper
-            sx={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: 300,
-                p: 4,
-                bgcolor: "background.paper",
-                boxShadow: 3,
-                borderRadius: 2,
-                display: "flex",
-                flexDirection: "column",
-                gap: "1rem",
-            }}
+  return (
+    <Paper
+      sx={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 300,
+        p: 4,
+        bgcolor: "background.paper",
+        boxShadow: 3,
+        borderRadius: 2,
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+      }}
+    >
+      <Typography variant="h2" textAlign="center">
+        {" "}
+        Login{" "}
+      </Typography>
+      {Error && (
+        <Typography color="error" sx={{ textAlign: "center" }}>
+          {Error}
+        </Typography>
+      )}
+      <TextField
+        type="text"
+        placeholder="email"
+        onChange={(e) => {
+          e.preventDefault();
+          setEmail(e.target.value);
+        }}
+        value={email}
+      />
+      <TextField
+        type="password"
+        placeholder="password"
+        onChange={(e) => {
+          e.preventDefault();
+          setPassword(e.target.value);
+        }}
+        value={password}
+      />
+      <Box>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{
+            width: "100%",
+          }}
+          onClick={LoginHandle}
         >
-            <Typography variant="h2" textAlign="center">
-                {" "}
-                Login{" "}
-            </Typography>
-            {Error && (
-                <Typography color="error" sx={{ textAlign: "center" }}>
-                    {Error}
-                </Typography>
-            )}
-            <TextField
-                type="text"
-                placeholder="email"
-                onChange={(e) => {
-                    e.preventDefault();
-                    setEmail(e.target.value);
-                }}
-                value={email}
-            />
-            <TextField
-                type="password"
-                placeholder="password"
-                onChange={(e) => {
-                    e.preventDefault();
-                    setPassword(e.target.value);
-                }}
-                value={password}
-            />
-            <Box>
-                <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{
-                        width: "100%",
-                    }}
-                    onClick={LoginHandle}
-                >
-                    login
-                </Button>
-            </Box>
-            <Typography
-                sx={{
-                    textAlign: "center",
-                }}
-            >
-                Don't have an account ? <Link to="/register"> Register</Link>
-            </Typography>
-        </Paper>
-    );
+          login
+        </Button>
+      </Box>
+      <Typography
+        sx={{
+          textAlign: "center",
+        }}
+      >
+        Don't have an account ? <Link to="/register"> Register</Link>
+      </Typography>
+    </Paper>
+  );
 }
