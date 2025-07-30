@@ -7,37 +7,46 @@ import AuthProtector from "./protectRoter/AuthProtector";
 import { useDispatch } from "react-redux";
 import UsersData from "./pages/usersData";
 import { setUser } from "./redux/features/users/userSlice";
+import FormiKPage from "./pages/FormiKPage";
 
 function App() {
-    const dispatch = useDispatch();
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) dispatch(setUser({ auth: true, token: jwt }));
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt");
+  if (jwt) dispatch(setUser({ auth: true, token: jwt }));
 
-    return (
-        <main>
-            <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route
-                    path="/users"
-                    element={
-                        <AuthProtector>
-                            <UsersData />
-                        </AuthProtector>
-                    }
-                />
+  return (
+    <main>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/users"
+          element={
+            <AuthProtector>
+              <UsersData />
+            </AuthProtector>
+          }
+        />
 
-                <Route
-                    path="/"
-                    element={
-                        <AuthProtector>
-                            <DashBoard />
-                        </AuthProtector>
-                    }
-                />
-            </Routes>
-        </main>
-    );
+        <Route
+          path="/dashboard"
+          element={
+            <AuthProtector>
+              <DashBoard />
+            </AuthProtector>
+          }
+        />
+        <Route
+          path="/formik"
+          element={
+            <AuthProtector>
+              <FormiKPage />
+            </AuthProtector>
+          }
+        />
+      </Routes>
+    </main>
+  );
 }
 
 export default App;

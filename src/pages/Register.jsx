@@ -8,22 +8,19 @@ import { signAPI } from "../api/signAPI";
 
 export default function Register() {
   const [Error, setError] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [inputs, setInputs] = useState({ name: "", email: "", password: "" });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   async function registerHandle() {
-    const res = await signAPI("/register", { email, password, name });
+    const res = await signAPI("/register", inputs);
     if (res.success === false) {
       setError(res.message);
     } else {
       setError("");
       localStorage.setItem("jwt", res.token);
       dispatch(setUser({ auth: true, token: res.token }));
-      navigate("/", { replace: true });
     }
   }
 
@@ -56,27 +53,27 @@ export default function Register() {
           placeholder="name"
           onChange={(e) => {
             e.preventDefault();
-            setName(e.target.value);
+            setInputs({ ...inputs, name: e.target.value });
           }}
-          value={name}
+          value={inputs.name}
         />
         <TextField
           type="text"
           placeholder="email"
           onChange={(e) => {
             e.preventDefault();
-            setEmail(e.target.value);
+            setInputs({ ...inputs, email: e.target.value });
           }}
-          value={email}
+          value={inputs.email}
         />
         <TextField
           type="password"
           placeholder="password"
           onChange={(e) => {
             e.preventDefault();
-            setPassword(e.target.value);
+            setInputs({ ...inputs, password: e.target.value });
           }}
-          value={password}
+          value={inputs.password}
         />
       </Box>
       <Button

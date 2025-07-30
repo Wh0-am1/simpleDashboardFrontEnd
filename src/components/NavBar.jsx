@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function NavBar() {
-  const Nav = ["Dashboard", "Insighsts", "Rewards", "users", "Chances"];
+  const Nav = ["dashboard", "formik", "Rewards", "users", "Chances"];
   return (
     <Box
       sx={{
@@ -15,7 +15,7 @@ export default function NavBar() {
       className="NavBar"
     >
       {Nav.map((e, i) => (
-        <Link to="/users" key={i}>
+        <Link to={`/${e}`} key={i}>
           {e}
         </Link>
       ))}

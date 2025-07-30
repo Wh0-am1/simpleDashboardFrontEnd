@@ -9,6 +9,7 @@ export default function Profile() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        width: "100%",
         gap: 2,
       }}
     >

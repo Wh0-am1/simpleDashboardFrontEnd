@@ -80,7 +80,8 @@ export default function ChannelCards() {
         <Box
           sx={{
             position: "absolute",
-            right: { lg: -18, xs: "45%" },
+            right: { lg: -18, xs: "50%" },
+            transform: { lg: "translate(-1%)", xs: "translateX(50%)" },
             bottom: {
               xs: "-7%",
               lg: 20,
