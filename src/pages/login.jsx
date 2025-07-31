@@ -21,7 +21,7 @@ export default function Login() {
   }, []);
   async function LoginHandle() {
     const res = await signAPI("/login", inputs);
-    if (res.success === false) {
+    if (!res.success) {
       setError(res.message);
     } else {
       setError("");

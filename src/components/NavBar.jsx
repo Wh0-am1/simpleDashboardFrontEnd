@@ -1,8 +1,20 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { setUser } from "../redux/features/users/userSlice";
 
 export default function NavBar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const Logout = () => {
+    const isSure = confirm("Are you sure to Logout ?");
+    if (isSure) {
+      localStorage.removeItem("jwt");
+      dispatch(setUser({ auth: false, token: "" }));
+      navigate("/login");
+    }
+  };
   const Nav = ["dashboard", "formik", "Rewards", "users", "Chances"];
   return (
     <Box
@@ -11,6 +23,7 @@ export default function NavBar() {
         flexDirection: "column",
         gap: "2rem",
         textTransform: "capitalize",
+        alignItems: "center",
       }}
       className="NavBar"
     >
@@ -19,6 +32,9 @@ export default function NavBar() {
           {e}
         </Link>
       ))}
+      <Button variant="outlined" color="error" onClick={Logout}>
+        Logout
+      </Button>
     </Box>
   );
 }

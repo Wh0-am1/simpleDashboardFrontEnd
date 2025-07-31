@@ -15,12 +15,13 @@ export default function Register() {
 
   async function registerHandle() {
     const res = await signAPI("/register", inputs);
-    if (res.success === false) {
-      setError(res.message);
+    if (!res.success) {
+      setError(res.message || "No Network");
     } else {
       setError("");
       localStorage.setItem("jwt", res.token);
       dispatch(setUser({ auth: true, token: res.token }));
+      navigate("/login");
     }
   }
 
