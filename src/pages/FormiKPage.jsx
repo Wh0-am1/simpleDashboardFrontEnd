@@ -4,9 +4,17 @@ import { Box, Button, Paper, Typography } from "@mui/material";
 import FormikTextField from "../components/FormikTextField";
 import { formikFormSchema } from "../validation/validation.formikForm";
 import FormikAutoComplete from "../components/FormikAutoComplete";
-import FormikDOB from "../components/FormikDOB";
 import FormikRadio from "../components/FormikRadio";
+import FormikDatePicker from "../components/FormikDatePicker";
+import CustomDialogue from "../components/CustomDialogue";
+import { useState } from "react";
 export default function FormiKPage() {
+  const [addedData, setAddedDate] = useState([]);
+  const [open, setOpen] = useState(false);
+  const submitHandler = (values) => {
+    setAddedDate(Object.entries(values));
+    setOpen(true);
+  };
   const options = [
     "BCA",
     "MCA",
@@ -16,6 +24,7 @@ export default function FormiKPage() {
     "M.Sc Computer Science",
     "B.Sc Computer Science",
   ];
+
   return (
     <Box
       sx={{
@@ -23,8 +32,12 @@ export default function FormiKPage() {
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
+        overflowX: "auto",
       }}
     >
+      <Box>
+        <CustomDialogue open={open} setOpen={setOpen} Data={addedData} />
+      </Box>
       <Paper
         elevation={6}
         sx={{
@@ -46,7 +59,7 @@ export default function FormiKPage() {
             gender: "",
           }}
           validationSchema={formikFormSchema}
-          onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
+          onSubmit={submitHandler}
         >
           <Form>
             <FormikTextField label={"Email"} name="email" />
@@ -58,7 +71,7 @@ export default function FormiKPage() {
               label={"Education"}
               name="education"
             />
-            <FormikDOB name="dob" label="DOB" />
+            <FormikDatePicker name="dob" label="DOB" />
             <FormikRadio
               name="gender"
               title={"Gender"}

@@ -13,6 +13,9 @@ export default function FormikTextField({ label, type = "text", ...props }) {
       {...field}
       type={type}
       {...props}
+      sx={{
+        zIndex: 0,
+      }}
     />
   );
 }
