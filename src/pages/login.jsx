@@ -25,8 +25,8 @@ export default function Login() {
       setError(res.message);
     } else {
       setError("");
-      localStorage.setItem("jwt", res.token);
-      dispatch(setUser({ auth: true, token: res.token }));
+      localStorage.setItem("cred", { token: res.token, userName: res.name });
+      dispatch(setUser({ auth: true, token: res.token, userName: res.name }));
       navigate("/dashboard", { replace: true });
     }
   }

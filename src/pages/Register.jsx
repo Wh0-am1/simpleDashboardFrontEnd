@@ -2,15 +2,12 @@ import React from "react";
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setUser } from "../redux/features/users/userSlice";
 import { signAPI } from "../api/signAPI";
 
 export default function Register() {
   const [Error, setError] = useState("");
   const [inputs, setInputs] = useState({ name: "", email: "", password: "" });
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   async function registerHandle() {
@@ -19,8 +16,6 @@ export default function Register() {
       setError(res.message || "No Network");
     } else {
       setError("");
-      localStorage.setItem("jwt", res.token);
-      dispatch(setUser({ auth: true, token: res.token }));
       navigate("/login");
     }
   }

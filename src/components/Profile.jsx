@@ -1,8 +1,10 @@
 import { Avatar, Box, Typography } from "@mui/material";
 import React from "react";
 import { Icon } from "@iconify/react";
+import { useSelector } from "react-redux";
 
 export default function Profile() {
+  const user = useSelector((state) => state.user.userName);
   return (
     <Box
       sx={{
@@ -25,7 +27,7 @@ export default function Profile() {
           fontWeight: "700",
         }}
       >
-        Robert Carlose
+        {user}
       </Typography>
       <Box
         sx={{

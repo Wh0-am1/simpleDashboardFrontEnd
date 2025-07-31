@@ -10,8 +10,8 @@ export default function NavBar() {
   const Logout = () => {
     const isSure = confirm("Are you sure to Logout ?");
     if (isSure) {
-      localStorage.removeItem("jwt");
-      dispatch(setUser({ auth: false, token: "" }));
+      localStorage.removeItem("cred");
+      dispatch(setUser({ auth: false, token: "", userName: "" }));
       navigate("/login");
     }
   };

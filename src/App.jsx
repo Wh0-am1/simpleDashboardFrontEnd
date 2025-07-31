@@ -11,8 +11,8 @@ import FormiKPage from "./pages/FormiKPage";
 
 function App() {
   const dispatch = useDispatch();
-  const jwt = localStorage.getItem("jwt");
-  if (jwt) dispatch(setUser({ auth: true, token: jwt }));
+  const cred = localStorage.getItem("cred");
+  if (cred) dispatch(setUser({ auth: true, ...cred }));
 
   return (
     <main>
