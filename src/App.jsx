@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import UsersData from "./pages/usersData";
 import { setUser } from "./redux/features/users/userSlice";
 import FormiKPage from "./pages/FormiKPage";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
             </AuthProtector>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </main>
   );
