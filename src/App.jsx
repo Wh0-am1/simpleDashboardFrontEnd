@@ -9,6 +9,7 @@ import UsersData from "./pages/usersData";
 import { setUser } from "./redux/features/users/userSlice";
 import FormiKPage from "./pages/FormiKPage";
 import NotFound from "./pages/NotFound";
+import Weather from "./pages/Weather";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,6 +46,15 @@ function App() {
             </AuthProtector>
           }
         />
+        <Route
+          path="/weather"
+          element={
+            <AuthProtector>
+              <Weather />
+            </AuthProtector>
+          }
+        />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </main>

@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import {} from "react-router-dom";
 import SideBar from "../components/sideBar";
 import { Box } from "@mui/material";
 
