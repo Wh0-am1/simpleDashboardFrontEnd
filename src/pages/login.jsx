@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { setUser } from "../redux/features/users/userSlice";
+import { setUser } from "../redux/features/userSlice";
 import { signAPI } from "../api/signAPI";
 
 export default function Login() {

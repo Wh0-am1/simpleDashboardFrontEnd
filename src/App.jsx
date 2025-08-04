@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import AuthProtector from "./protectRoter/AuthProtector";
 import { useDispatch } from "react-redux";
 import UsersData from "./pages/usersData";
-import { setUser } from "./redux/features/users/userSlice";
+import { setUser } from "./redux/features/userSlice";
 import FormiKPage from "./pages/FormiKPage";
 import NotFound from "./pages/NotFound";
 import Weather from "./pages/Weather";
