@@ -1,8 +1,8 @@
 import * as Yup from "yup";
 
-export const DynamicFormSchema = Yup.object().shape({
+export const DynamicFormSchema = Yup.object({
   people: Yup.array().of(
-    Yup.object().shape({
+    Yup.object({
       name: Yup.string().required("Name is required"),
       age: Yup.number()
         .typeError("Age must be a number")
