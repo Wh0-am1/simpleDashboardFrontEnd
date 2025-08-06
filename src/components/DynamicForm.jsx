@@ -1,6 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
+import FormikTextField from "./FormikTextField";
 
-const DynamicForm = ({ id, setGenId, setAddedData, addedData }) => {
+const DynamicForm = ({ id, name, age, remove }) => {
   return (
     <Box
       sx={{
@@ -10,35 +11,9 @@ const DynamicForm = ({ id, setGenId, setAddedData, addedData }) => {
         gap: 1,
       }}
     >
-      <TextField
-        label="name"
-        onChange={(e) => {
-          setAddedData((prev) => ({
-            ...prev,
-            [id]: { ...prev[id], name: e.target.value },
-          }));
-        }}
-        value={addedData?.id?.name}
-      />
-      <TextField
-        label="age"
-        onChange={(e) => {
-          setAddedData((prev) => ({
-            ...prev,
-            [id]: { ...prev[id], age: e.target.value },
-          }));
-        }}
-        value={addedData?.id?.age}
-      />
-      <Button
-        variant="contained"
-        color="error"
-        onClick={() => {
-          setGenId((prev) => {
-            return prev.filter((item) => item != id);
-          });
-        }}
-      >
+      <FormikTextField label={"name"} name={name} />
+      <FormikTextField label={"age"} name={age} />
+      <Button variant="contained" color="error" onClick={() => remove(id)}>
         Delete
       </Button>
     </Box>
