@@ -1,7 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
 
-const DynamicForm = ({ id, setGenId }) => {
-  console.log(id);
+const DynamicForm = ({ id, setGenId, setAddedData, addedData }) => {
   return (
     <Box
       sx={{
@@ -11,8 +10,26 @@ const DynamicForm = ({ id, setGenId }) => {
         gap: 1,
       }}
     >
-      <TextField label="name" />
-      <TextField label="age" />
+      <TextField
+        label="name"
+        onChange={(e) => {
+          setAddedData((prev) => ({
+            ...prev,
+            [id]: { ...prev[id], name: e.target.value },
+          }));
+        }}
+        value={addedData?.id?.name}
+      />
+      <TextField
+        label="age"
+        onChange={(e) => {
+          setAddedData((prev) => ({
+            ...prev,
+            [id]: { ...prev[id], age: e.target.value },
+          }));
+        }}
+        value={addedData?.id?.age}
+      />
       <Button
         variant="contained"
         color="error"
