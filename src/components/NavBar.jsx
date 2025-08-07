@@ -15,7 +15,14 @@ export default function NavBar() {
       navigate("/login");
     }
   };
-  const Nav = ["dashboard", "formik", "weather", "users", "dynamicForm"];
+  const Nav = [
+    "dashboard",
+    "formik",
+    "weather",
+    "users",
+    "dynamicForm",
+    "dragable",
+  ];
   return (
     <Box
       sx={{
