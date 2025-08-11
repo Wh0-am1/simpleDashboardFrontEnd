@@ -13,72 +13,100 @@ import Weather from "./pages/Weather";
 import DynamicFormPage from "./pages/DynamicFormPage";
 import DraggablePage from "./pages/DraggablePage";
 import LibDraggable from "./pages/LibDraggable";
+import ProductSystem from "./pages/ProductSystem";
+import CartSystem from "./pages/CartSystem";
+import Purchased from "./pages/Purchased";
 
 function App() {
-  const dispatch = useDispatch();
-  const cred = localStorage.getItem("cred");
-  if (cred) dispatch(setUser({ auth: true, ...JSON.parse(cred) }));
+    const dispatch = useDispatch();
+    const cred = localStorage.getItem("cred");
+    if (cred) dispatch(setUser({ auth: true, ...JSON.parse(cred) }));
 
-  return (
-    <main>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route
-          path="/users"
-          element={
-            <AuthProtector>
-              <UsersData />
-            </AuthProtector>
-          }
-        />
+    return (
+        <main>
+            <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route
+                    path="/users"
+                    element={
+                        <AuthProtector>
+                            <UsersData />
+                        </AuthProtector>
+                    }
+                />
 
-        <Route
-          path="/dashboard"
-          element={
-            <AuthProtector>
-              <DashBoard />
-            </AuthProtector>
-          }
-        />
-        <Route
-          path="/formik"
-          element={
-            <AuthProtector>
-              <FormiKPage />
-            </AuthProtector>
-          }
-        />
-        <Route
-          path="/weather"
-          element={
-            <AuthProtector>
-              <Weather />
-            </AuthProtector>
-          }
-        />
-        <Route
-          path="dynamicForm"
-          element={
-            <AuthProtector>
-              <DynamicFormPage />
-            </AuthProtector>
-          }
-        />
-        <Route
-          path="scratchDragable"
-          element={
-            <AuthProtector>
-              <DraggablePage />
-            </AuthProtector>
-          }
-        />
-        <Route path="dragable" element={<LibDraggable />} />
+                <Route
+                    path="/dashboard"
+                    element={
+                        <AuthProtector>
+                            <DashBoard />
+                        </AuthProtector>
+                    }
+                />
+                <Route
+                    path="/formik"
+                    element={
+                        <AuthProtector>
+                            <FormiKPage />
+                        </AuthProtector>
+                    }
+                />
+                <Route
+                    path="/weather"
+                    element={
+                        <AuthProtector>
+                            <Weather />
+                        </AuthProtector>
+                    }
+                />
+                <Route
+                    path="dynamicForm"
+                    element={
+                        <AuthProtector>
+                            <DynamicFormPage />
+                        </AuthProtector>
+                    }
+                />
+                <Route
+                    path="scratchDragable"
+                    element={
+                        <AuthProtector>
+                            <DraggablePage />
+                        </AuthProtector>
+                    }
+                />
+                <Route
+                    path="products"
+                    element={
+                        <AuthProtector>
+                            <ProductSystem />
+                        </AuthProtector>
+                    }
+                />
+                <Route
+                    path="cart"
+                    element={
+                        <AuthProtector>
+                            <CartSystem />
+                        </AuthProtector>
+                    }
+                />
+                <Route
+                    path="purchased"
+                    element={
+                        <AuthProtector>
+                            <Purchased />
+                        </AuthProtector>
+                    }
+                />
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </main>
-  );
+                <Route path="dragable" element={<LibDraggable />} />
+
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </main>
+    );
 }
 
 export default App;
