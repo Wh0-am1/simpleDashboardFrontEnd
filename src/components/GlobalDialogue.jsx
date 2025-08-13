@@ -1,39 +1,17 @@
 import { Icon } from "@iconify/react";
-import {
-  Box,
-  Checkbox,
-  Dialog,
-  FormControlLabel,
-  FormGroup,
-  IconButton,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Dialog, IconButton, Stack, Typography } from "@mui/material";
 import React from "react";
-import { useState } from "react";
+import { cloneElement } from "react";
 
-export default function GlobalDialogue({ open, setOpen, Data }) {
-  const [Tempopen, settempOpen] = useState(true);
-
+export default function GlobalDialogue({ open, setOpen, Data, children }) {
   const HandleClose = () => {
-    settempOpen(false);
+    setOpen(false);
   };
 
-  const data = {
-    title: {
-      "Lunch Marking Hours": "2PM to 12AM",
-      "Evening Food Marking Hours": "10 AM to 3 PM",
-    },
-    body: [
-      { bodyTitle: "Lunch Tommorrow", checkBox: false },
-      { bodyTitle: "Food For Evenening", checkBox: true },
-    ],
-    close: true,
-  };
   return (
     <Dialog
       onClose={HandleClose}
-      open={Tempopen}
+      open={open}
       sx={{
         px: { xs: 5, md: 10 },
       }}
@@ -58,34 +36,20 @@ export default function GlobalDialogue({ open, setOpen, Data }) {
         }}
       >
         <Box>
-          {Object.entries(data.title).map(([key, value], index) => (
+          {Object.entries(Data.title).map(([key, value], index) => (
             <Stack direction={"row"} gap={1} key={index}>
               <Typography>{`${key} :`}</Typography>
               <Typography>{value}</Typography>
             </Stack>
           ))}
         </Box>
-        {data.close && (
+        {Data.close && (
           <IconButton onClick={HandleClose}>
             <Icon icon="carbon:close-filled" width="22" height="22" />
           </IconButton>
         )}
       </Box>
-      <Box
-        sx={{
-          p: 2,
-        }}
-      >
-        <FormGroup>
-          {data.body.map((e, index) => (
-            <FormControlLabel
-              key={index}
-              control={<Checkbox disabled={e.checkBox} />}
-              label={e.bodyTitle}
-            />
-          ))}
-        </FormGroup>
-      </Box>
+      {cloneElement(children, { Data: Data })}
     </Dialog>
   );
 }
