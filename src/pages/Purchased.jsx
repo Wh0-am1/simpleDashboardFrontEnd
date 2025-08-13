@@ -2,6 +2,7 @@ import { Container, Box, Typography } from "@mui/material";
 import React from "react";
 import PurchasedCard from "../components/PurchasedCard";
 import { useSelector } from "react-redux";
+import GlobalDialogue from "../components/GlobalDialogue";
 
 export default function Purchased() {
     const purchased = useSelector((state) => state.purchased);
@@ -27,6 +28,7 @@ export default function Purchased() {
                     <Typography>Nothing in Purchased</Typography>
                 </Box>
             )}
+            <GlobalDialogue />
         </Container>
     );
 }

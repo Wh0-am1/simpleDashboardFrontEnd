@@ -1,4 +1,11 @@
-import { Box, Container, Typography } from "@mui/material";
+import {
+    Badge,
+    Box,
+    Container,
+    IconButton,
+    Tooltip,
+    Typography,
+} from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "../components/ProductCard";
@@ -38,24 +45,21 @@ export default function ProductSystem() {
                         }}
                     >
                         <Link to="/cart">
-                            <Icon icon="mdi:cart" width="30" height="30" />
-                            {cart.length > 0 && (
-                                <Box
-                                    sx={{
-                                        bgcolor: "tan",
-                                        p: 0.64,
-                                        borderRadius: "50%",
-                                        textAlign: "center",
-                                        fontSize: "0.8rem",
-                                        position: "absolute",
-                                        right: 0,
-                                        top: 15,
-                                        fontWeight: 700,
-                                    }}
-                                >
-                                    {cart.length}
-                                </Box>
-                            )}
+                            <Tooltip title="cart">
+                                <IconButton>
+                                    <Icon icon="mdi:cart" width="30" height="30" />
+                                    {cart.length > 0 && (
+                                        <Badge
+                                            badgeContent={cart.length}
+                                            overlap="circular"
+                                            color="primary"
+                                            sx={{
+                                                bottom: -15,
+                                            }}
+                                        />
+                                    )}
+                                </IconButton>
+                            </Tooltip>
                         </Link>
                     </Box>
                 </Box>

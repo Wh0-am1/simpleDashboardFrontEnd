@@ -8,10 +8,11 @@ export default function CartCard({ product }) {
             sx={{
                 bgcolor: "#fb8c37",
                 borderRadius: 3,
-                p: 1,
+                p: 2,
                 display: "flex",
                 gap: 4,
-                justifyContent: "center",
+                justifyContent: "space-between",
+                px: 2,
                 alignItems: "center",
             }}
         >
