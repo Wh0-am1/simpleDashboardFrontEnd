@@ -50,9 +50,13 @@ export default function ProductCard({ product, setOpen, setSelect }) {
                 >
                     {product.name}
                 </Typography>
-                <Typography variant="body1">
-                    Availability : {product.available}
-                </Typography>
+                {product.available ? (
+                    <Typography variant="body1">
+                        Availability : {product.available}
+                    </Typography>
+                ) : (
+                    <Typography color="error">Out Of Stock</Typography>
+                )}{" "}
                 <Box
                     sx={{
                         display: "flex",
