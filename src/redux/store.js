@@ -5,6 +5,7 @@ import uploadSlice from "./features/uploadSlice";
 import productSlice from "./features/ProductSlice";
 import cartSlice from "./features/CartSlice";
 import purchasedSlice from "./features/PurchasedSlice";
+import formSlice from "./features/formSlice";
 export default configureStore({
     reducer: {
         user: userSlice,
@@ -13,5 +14,6 @@ export default configureStore({
         product: productSlice,
         cart: cartSlice,
         purchased: purchasedSlice,
+        stepper: formSlice,
     },
 });

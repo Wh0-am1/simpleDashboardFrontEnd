@@ -17,6 +17,7 @@ import ProductSystem from "./pages/ProductSystem";
 import CartSystem from "./pages/CartSystem";
 import Purchased from "./pages/Purchased";
 import ReactWindow from "./pages/ReactWindow";
+import StepperPage from "./pages/StepperPage";
 
 function App() {
     const dispatch = useDispatch();
@@ -110,6 +111,15 @@ function App() {
                         </AuthProtector>
                     }
                 />
+                <Route
+                    path="stepper"
+                    element={
+                        <AuthProtector>
+                            <StepperPage />
+                        </AuthProtector>
+                    }
+                />
+
                 <Route path="/react-window" element={<ReactWindow />} />
 
                 <Route path="*" element={<NotFound />} />

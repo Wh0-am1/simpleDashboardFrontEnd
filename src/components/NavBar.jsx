@@ -24,6 +24,7 @@ export default function NavBar() {
         "dragable",
         "products",
         "purchased",
+        "stepper",
     ];
     return (
         <Box
