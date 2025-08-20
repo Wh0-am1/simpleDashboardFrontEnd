@@ -19,6 +19,7 @@ export default function DependDropDown() {
 
   const selectCountry = useSelector((state) => state.location.selectedCountry);
   const selectState = useSelector((state) => state.location.selectedState);
+  const selectCity = useSelector((state) => state.location.selectedCity);
   useEffect(() => {
     dispatch(LocationThunk({ url: "positions" }));
   }, []);
@@ -60,6 +61,12 @@ export default function DependDropDown() {
           action={setCity}
         />
         <Typography color="error">{error}</Typography>
+        {selectCity && (
+          <Typography>
+            You selected : {selectCountry + " > "} {selectState + " > "}
+            {selectCity}
+          </Typography>
+        )}{" "}
       </Box>
     </Container>
   );
