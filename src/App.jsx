@@ -24,7 +24,6 @@ function App() {
   const dispatch = useDispatch();
   const cred = localStorage.getItem("cred");
   if (cred) dispatch(setUser({ auth: true, ...JSON.parse(cred) }));
-
   return (
     <main>
       <Routes>

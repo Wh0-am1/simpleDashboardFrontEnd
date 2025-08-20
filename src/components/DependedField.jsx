@@ -14,6 +14,7 @@ export default function DependedField({
   loc,
 }) {
   const dispatch = useDispatch();
+  console.log("DependedFiled");
   const ChangeHandler = (e, value) => {
     dispatch(action(value));
 

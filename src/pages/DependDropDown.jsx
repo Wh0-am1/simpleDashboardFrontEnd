@@ -6,8 +6,6 @@ import { LocationThunk } from "../redux/features/locationSlice";
 import { useSelector } from "react-redux";
 import DependedField from "../components/DependedField";
 import { setCity, setState, setCountry } from "../redux/features/locationSlice";
-import { useState } from "react";
-import { useCallback } from "react";
 
 export default function DependDropDown() {
   const dispatch = useDispatch();

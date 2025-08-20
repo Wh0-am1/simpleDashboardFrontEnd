@@ -4,7 +4,6 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 
 export default function LibDraggableCard({ task, opacity }) {
-  console.log(opacity);
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: task.id });
   const style = {

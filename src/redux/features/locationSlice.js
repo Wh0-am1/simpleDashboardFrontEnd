@@ -23,13 +23,12 @@ export const LocationThunk = createAsyncThunk(
           key == "cities"
             ? response.data.data
             : response.data.data[key].map((e) => e.name);
-
         return res.length
           ? { res, key }
           : ThunkAPI.rejectWithValue("No Data Found");
       }
     } catch (e) {
-      console.log(e);
+      return ThunkAPI.rejectWithValue(e.response.data.msg);
     }
   },
 );
