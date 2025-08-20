@@ -6,14 +6,16 @@ import productSlice from "./features/ProductSlice";
 import cartSlice from "./features/CartSlice";
 import purchasedSlice from "./features/PurchasedSlice";
 import formSlice from "./features/formSlice";
+import locationSlice from "./features/locationSlice";
 export default configureStore({
-    reducer: {
-        user: userSlice,
-        weather: weatherSlice,
-        upload: uploadSlice,
-        product: productSlice,
-        cart: cartSlice,
-        purchased: purchasedSlice,
-        stepper: formSlice,
-    },
+  reducer: {
+    user: userSlice,
+    weather: weatherSlice,
+    upload: uploadSlice,
+    product: productSlice,
+    cart: cartSlice,
+    purchased: purchasedSlice,
+    stepper: formSlice,
+    location: locationSlice,
+  },
 });
