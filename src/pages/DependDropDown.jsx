@@ -8,64 +8,69 @@ import DependedField from "../components/DependedField";
 import { setCity, setState, setCountry } from "../redux/features/locationSlice";
 
 export default function DependDropDown() {
-  const dispatch = useDispatch();
-  const countries = useSelector((state) => state.location.countries);
-  const states = useSelector((state) => state.location.states);
-  const cities = useSelector((state) => state.location.cities);
-  const loading = useSelector((state) => state.location.loading);
-  const error = useSelector((state) => state.location.error);
+    const dispatch = useDispatch();
+    const countries = useSelector((state) => state.location.countries);
+    const states = useSelector((state) => state.location.states);
+    const cities = useSelector((state) => state.location.cities);
+    const loading = useSelector((state) => state.location.loading);
+    const error = useSelector((state) => state.location.error);
 
-  const selectCountry = useSelector((state) => state.location.selectedCountry);
-  const selectState = useSelector((state) => state.location.selectedState);
-  const selectCity = useSelector((state) => state.location.selectedCity);
-  useEffect(() => {
-    dispatch(LocationThunk({ url: "positions" }));
-  }, []);
-  return (
-    <Container>
-      <Typography textAlign={"center"} variant="h3" fontWeight={"bolder"}>
-        Depended DropDown
-      </Typography>
-      <Box
-        display={"flex"}
-        sx={{
-          mt: 4,
-          flexDirection: "column",
-          gap: 1,
-        }}
-      >
-        <DependedField
-          options={countries}
-          label={"Select Country"}
-          action={setCountry}
-          url={"states"}
-          loc={"country"}
-        />
-        <DependedField
-          options={states}
-          loading={!selectState && loading}
-          label={"Select State"}
-          disable={selectCountry ? false : true}
-          action={setState}
-          body={{ country: selectCountry }}
-          url={"state/cities"}
-          loc={"state"}
-        />
-        <DependedField
-          options={cities}
-          loading={loading}
-          label={"Select Cities"}
-          disable={selectState ? false : true}
-          action={setCity}
-        />
-        <Typography color="error">{error}</Typography>
-        {selectCity && (
-          <Typography>
-            You selected : {selectCountry + " > "} {selectState + " > "}
-            {selectCity}
-          </Typography>
-        )}{" "}
-      </Box>
-    </Container>
-  );
+    const { selectedCountry, selectedState, selectedCity } = useSelector(
+        (state) => state.location,
+    );
+
+    console.log({ selectedCountry, selectedState, selectedCity });
+    useEffect(() => {
+        dispatch(LocationThunk({ url: "positions" }));
+    }, []);
+    return (
+        <Container>
+            <Typography textAlign={"center"} variant="h3" fontWeight={"bolder"}>
+                Depended DropDown
+            </Typography>
+            <Box
+                display={"flex"}
+                sx={{
+                    mt: 4,
+                    flexDirection: "column",
+                    gap: 1,
+                }}
+            >
+                <DependedField
+                    options={countries}
+                    label={"Select Country"}
+                    action={setCountry}
+                    url={"states"}
+                    loc={"country"}
+                    selected={selectedCountry}
+                />
+                <DependedField
+                    options={states}
+                    loading={!selectedState && loading}
+                    label={"Select State"}
+                    disable={selectedCountry ? false : true}
+                    action={setState}
+                    body={{ country: selectedCountry }}
+                    url={"state/cities"}
+                    loc={"state"}
+                    selected={selectedState}
+                />
+                <DependedField
+                    options={cities}
+                    loading={loading}
+                    label={"Select Cities"}
+                    disable={selectedState ? false : true}
+                    action={setCity}
+                    selected={selectedCity}
+                />
+                <Typography color="error">{error}</Typography>
+                {selectedCity && (
+                    <Typography>
+                        You selecteded : {selectedCountry + " > "} {selectedState + " > "}
+                        {selectedCity}
+                    </Typography>
+                )}{" "}
+            </Box>
+        </Container>
+    );
 }
